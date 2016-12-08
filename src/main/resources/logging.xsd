@@ -1,0 +1,33 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://core.informatik.haw-hamburg.de/services/logging"
+           targetNamespace="http://core.informatik.haw-hamburg.de/services/logging"
+           elementFormDefault="qualified">
+        <!-- xmlns:xs = standard xml types. -->
+        <!-- xmlns:tns = target namespace shortcut. -->
+        <!-- targetNamespace = target namespace for own types. -->
+
+    <xs:element name="putMessageRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="tns:message"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="message">
+        <xs:sequence>
+            <xs:element name="text" type="xs:string"/>
+            <xs:element name="source" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="priority" type="tns:priority" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="priority">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="INFO"/>
+            <xs:enumeration value="DEBUG"/>
+            <xs:enumeration value="WARNING"/>
+            <xs:enumeration value="ERROR"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
